@@ -48,7 +48,7 @@ namespace Azkar_Al_Muslm.FORMS
                 name = jsonObject[i].name;
                 desc = jsonObject[i].text;
                 CardData card = new CardData(id, name, desc);
-                FLP_allCardData.Controls.Add(card.createCard()); // تم تغيير AddControl إلى Controls.Add
+                FLP_allCardData.Controls.Add(card.createCard()); 
             }
         }
         public async void loadNew()
