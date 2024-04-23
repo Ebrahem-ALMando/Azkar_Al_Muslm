@@ -30,7 +30,7 @@ namespace Azkar_Al_Muslm.GUI
         int num = 0;
         private dynamic jsonObject;
         private Random random;
-
+        private Form_CardData cardData = null;
         public UserCO_Home()
 
         {
@@ -157,9 +157,21 @@ namespace Azkar_Al_Muslm.GUI
 
         private void BTN_allNames_Click(object sender, EventArgs e)
         {
-            Form_CardData cardData = new Form_CardData(jsonObject);
-            cardData.ShowDialog();
-            cardData.Dispose();
+
+          
+
+          
+
+            if (cardData == null || cardData.IsDisposed)
+            {
+                cardData = new Form_CardData(jsonObject);
+            }
+
+            if (!cardData.Visible)
+            {
+                cardData.Visible = true;
+                cardData.FLP_allCardData.AutoScrollPosition=new Point(0,0);
+            }
         }
     }
     }

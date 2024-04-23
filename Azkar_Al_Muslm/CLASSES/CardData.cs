@@ -2,6 +2,7 @@
 using Azkar_Al_Muslm.Properties;
 using Bunifu.Framework.UI;
 using DevExpress.DXTemplateGallery.Extensions;
+using DevExpress.PivotGrid.OLAP.Mdx;
 using DevExpress.Xpo.DB.Helpers;
 using DevExpress.XtraEditors;
 using Guna.UI2.WinForms;
@@ -29,14 +30,20 @@ namespace Azkar_Al_Muslm.CLASSES
         private int id = 0;
         private string name = "";
         private string desc = "";
+ 
+        private Form form;
         public CardData() { }
-        public CardData(int id,string name,string desc)
-        { 
+        public CardData(int id,string name,string desc,Form form)
+        {
+            setData(id,name,desc,form);
+        }
+        internal void setData(int id, string name, string desc,Form form)
+        {
             this.id = id;
             this.name = name;
             this.desc = desc;
-          
-        
+            this.form = form;
+
         }
         public BunifuCards createCard()
         {
@@ -53,16 +60,20 @@ namespace Azkar_Al_Muslm.CLASSES
             bunifuCards.ShadowDepth = 20;
             bunifuCards.Size = new Size(528, 363);
 
-            switch (id % 2)
+            switch (id % 3)
             {
                 case 0:
-                    bunifuCards.Margin = new Padding(11,15,7,3);
+                    bunifuCards.Margin = new Padding(11, 15, 11, 3);
                     break;
                 case 1:
-                    bunifuCards.Margin = new Padding(7, 15, 11, 3);
+                    bunifuCards.Margin = new Padding(7, 15, 7, 3);
+                    break;
+                case 2:
+                    bunifuCards.Margin = new Padding(7, 15, 7, 3);
                     break;
             }
 
+  
             return bunifuCards;
         }
        
@@ -86,7 +97,7 @@ namespace Azkar_Al_Muslm.CLASSES
             Guna2Panel panel = new Guna2Panel();
             setConfigPanel(id,panel, colorBorderPanelTitle, colorPanelTitle,
                new Size (496, 67),new Point (16, 16), "guna2PanelTitle");
-            panel.Controls.Add(name != null ? createLableTitle(id) : null);
+            panel.Controls.Add(name != null ? createLableTitle() : null);
             return panel;
         }
         public Guna2Panel createPanelContent(int id)
@@ -103,7 +114,7 @@ namespace Azkar_Al_Muslm.CLASSES
             Guna2Panel panel = new Guna2Panel();
             setConfigPanel(id, panel, colorBorderPanel_RTB, colorPanel_RTB,
                  new Size(460, 158), new Point(14,12), "guna2Panel_RTB");
-            panel.Controls.Add(createTextBox(id));
+            panel.Controls.Add(createTextBox());
             return panel;
         }
         public Guna2Panel createPanel_BTNCopy(int id)
@@ -111,15 +122,15 @@ namespace Azkar_Al_Muslm.CLASSES
             Guna2Panel panel = new Guna2Panel();
             setConfigPanel(id, panel, colorBorderPanelBTNCopy, colorPanelBTNCopy,
                  new Size(460, 61), new Point(14,184), "guna2PanelBTNCopy");
-            panel.Controls.Add(createBTNCopyDesc(id));
+            panel.Controls.Add(createBTNCopyDesc());
             return panel;
         }
-        public Label createLableTitle(int id)
+        public Label createLableTitle()
         {
             Label label = new Label();
-            label.Font = new Font("El Messiri", 16.2F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            label.Font = new Font("Cairo SemiBold", 13.8F,FontStyle.Bold, GraphicsUnit.Point,0);
             label.ForeColor = Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(214)))), ((int)(((byte)(112)))));
-            label.Location = new Point(86, 9);
+            label.Location = new Point(66, 9);
             label.Name = $"label{id}";
             label.Size = new Size(369, 44);
             label.TabIndex = 5;
@@ -127,7 +138,7 @@ namespace Azkar_Al_Muslm.CLASSES
             label.TextAlign = ContentAlignment.MiddleCenter;
             return label;
         }
-        public TextBox createTextBox(int id)
+        public TextBox createTextBox()
         {
             TextBox TextBox = new TextBox();
             TextBox.BackColor = Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(242)))), ((int)(((byte)(170)))));
@@ -137,44 +148,55 @@ namespace Azkar_Al_Muslm.CLASSES
             TextBox.Location = new Point(18, 10);
             TextBox.Name = $"TB_DescName{id}";
 
-
             TextBox.Text = desc;
             TextBox.ReadOnly = true;
             TextBox.Size = new Size(427, 138);
             TextBox.Multiline = true;
-    
-
+   
             return TextBox;
         }
     
-        public Guna2CircleButton createBTNCopyDesc(int id)
+        public Guna2CircleButton createBTNCopyDesc()
         {
             Guna2CircleButton button = new Guna2CircleButton();
             button.Animated = true;
             button.AnimatedGIF = true;
-            button.BackColor = System.Drawing.Color.Transparent;
-            button.Cursor = System.Windows.Forms.Cursors.Hand;
-            button.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            button.FillColor = System.Drawing.Color.Transparent;
-            button.Font = new System.Drawing.Font("Segoe UI", 9F);
-            button.ForeColor = System.Drawing.Color.White;
-            button.HoverState.FillColor = System.Drawing.Color.Transparent;
+            button.BackColor = Color.Transparent;
+            button.Cursor = Cursors.Hand;
+            button.DisabledState.BorderColor = Color.DarkGray;
+            button.DisabledState.CustomBorderColor = Color.DarkGray;
+            button.DisabledState.FillColor = Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            button.DisabledState.ForeColor = Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            button.FillColor = Color.Transparent;
+            button.Font = new Font("Segoe UI", 9F);
+            button.ForeColor = Color.White;
+            button.HoverState.FillColor = Color.Transparent;
             button.HoverState.Image = global::Azkar_Al_Muslm.Properties.Resources.icons8_copy_50px;
             button.Image = global::Azkar_Al_Muslm.Properties.Resources.icons8_copy_50px_1;
-            button.ImageSize = new System.Drawing.Size(50, 50);
-            button.Location = new System.Drawing.Point(212, 3);
-            button.Name = "BTN_CopyDesc";
-            button.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(169)))), ((int)(((byte)(50)))));
+            button.ImageSize = new Size(50, 50);
+            button.Location = new Point(212, 3);
+            button.Name = $"BTN_CopyDesc{id}";
+            button.PressedColor =   Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(169)))), ((int)(((byte)(50)))));
             button.PressedDepth = 100;
             button.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            button.Size = new System.Drawing.Size(52, 52);
+            button.Size = new Size(52, 52);
             button.TabIndex = 9;
             button.Tag = "";
             button.UseTransparentBackground = true;
+            button.Tag = desc;
+
+            button.Click += (sender, e) =>
+            {
+                Clipboard.SetText(button.Tag.ToString());
+            };
             return button;
         }
+
+        internal void getData()
+        {
+            MessageBox.Show($"id{id}\tN:{name}\tD:{desc}");
+        }
+
+
     }
 }

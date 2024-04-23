@@ -61,6 +61,16 @@ namespace Azkar_Al_Muslm.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _20240409_163446 {
+            get {
+                object obj = ResourceManager.GetObject("_20240409_163446", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  سبحان الله
         /// الحمد لله
         /// لا إله إلا الله
@@ -116,9 +126,39 @@ namespace Azkar_Al_Muslm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Back_Arrow_50px_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Back_Arrow_50px_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_Back_Arrow_50px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Back_Arrow_50px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Back_Arrow_50px_3 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Back_Arrow_50px_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Back_Arrow_50px_4 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Back_Arrow_50px_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -266,9 +306,29 @@ namespace Azkar_Al_Muslm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Next_Arrow_50px_2 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Next_Arrow_50px_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_Night_50px {
             get {
                 object obj = ResourceManager.GetObject("icons8_Night_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_page_50px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_page_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
